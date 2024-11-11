@@ -126,8 +126,24 @@ public class ManipulacionArchivos {
             System.out.println("################ Error:                       ################");
             System.out.println(e.toString());
         }
-
     }
+
+    public static void writeIntArrayToFile(String fileName, int[] array) {
+        FileWriter file;
+        PrintWriter writer;
+        try {
+            file = new FileWriter("C:\\archivos\\" + fileName + ".txt");
+            writer = new PrintWriter(file);
+            // Guardar el array a un archivo
+            for ( int unNumero : array ){
+                writer.println(unNumero);
+            }
+            file.close();
+        } catch (Exception e) {
+            System.out.println("Error en el programa(writeIntArrayToFile): " + e.toString());
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader bufer = new BufferedReader(new InputStreamReader(System.in));
         String fileName, entrada;
@@ -161,6 +177,13 @@ public class ManipulacionArchivos {
                     System.out.println("Escribe el nombre del archivo: ");
                     fileName = bufer.readLine();
                     writeFile(fileName);
+                }
+                break;
+                case 4: {
+                    int[] numeros = {10,0,9,15,32,67,8,95,69,34,1945};
+                    System.out.println("Escribe el nombre del archivo: ");
+                    fileName = bufer.readLine();
+                    writeIntArrayToFile(fileName, numeros);
                 }
                 break;
                 case 5: {
